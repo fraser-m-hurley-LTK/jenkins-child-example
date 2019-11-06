@@ -6,7 +6,7 @@ pipeline {
                 steps {
                     script{
                         def causes = currentBuild.getBuildCauses()
-                        echo("${causes}")
+                        echo("${causes.upstreamProject}")
                         def specificCause = currentBuild.getBuildCauses('hudson.model.Cause.UpstreamCause')
                         echo("${specificCause}")
                     }
