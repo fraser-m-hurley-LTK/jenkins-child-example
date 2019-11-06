@@ -8,8 +8,7 @@ pipeline {
                         def causes = currentBuild.getBuildCauses()
                         echo("${causes}")
                         def specificCause = currentBuild.getBuildCauses('hudson.model.Cause.UpstreamCause')
-                        echo("${causes}")
-                        echo("I have run my ${env.BRANCH_NAME}, the question is, will my child")
+                        echo("${specificCause.upstreamProject}")
                     }
                 }
         }
