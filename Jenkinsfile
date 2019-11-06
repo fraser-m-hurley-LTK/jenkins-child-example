@@ -1,6 +1,6 @@
 pipeline {
     agent any
-    triggers { upstream(upstreamProjects: 'Fraser_test', threshold: hudson.model.Result.SUCCESS) }
+    triggers { upstream(upstreamProjects: 'Fraser_test/master,Fraser_test/staging', threshold: hudson.model.Result.SUCCESS) }
     stages {
         stage('child stage') {
                 steps {
