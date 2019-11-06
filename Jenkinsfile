@@ -1,19 +1,13 @@
 pipeline {
     agent any
+    triggers { upstream(upstreamProjects: 'Fraser_test', threshold: hudson.model.Result.SUCCESS) }
     stages {
-        stage('master') {
-            when{
-                branch 'master'
-            }
+        stage('child stage') {
                 steps {
-                    echo("I have run my ${env.BRANCH_NAME}, the question is, will my child")
-                }
-        }
-        stage('staging') {
-            when{
-                branch 'staging'
-            }
-                steps {
+                    def causes = currentBuild.getBuildCauses()
+                    echo("${causes}")
+                    def specificCause = currentBuild.getBuildCauses('hudson.model.Cause.UpstreamCause')
+                    echo("${causes}")
                     echo("I have run my ${env.BRANCH_NAME}, the question is, will my child")
                 }
         }
